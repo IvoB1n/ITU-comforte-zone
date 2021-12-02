@@ -66,18 +66,17 @@ export default class App extends React.Component {
           
          
          
-         <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40,color: "#000" }}>
+         <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40, }}>
          <Entypo  name='user' style={{ fontSize: 24,}}/>
-         <Button style={{ color:"#fff", fontSize: 24}} title="Add some friends"  onPress={() => this.props.navigation.navigate('/pa') } /> 
-         
+         <Button title="Add some friends"  onPress={() => this.props.navigation.navigate('Home') } />
          </Text>
          <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40}}>
          <Entypo  name='light-up' style={{ fontSize: 24, }}/>
            Mode 
            {this.state.mode ? 
-           <Entypo  onClick={() => {this.setState({mode: !this.state.mode})}} name='moon' style={{ fontSize: 24, marginLeft:"1em"}}/>
+           <Entypo  onClick={() => {switchMode(ps => !ps);}} name='moon' style={{ fontSize: 24, marginLeft:"1em"}}/>
            :
-           <Entypo onClick={() => {this.setState({mode: !this.state.mode})}} name='light-up' style={{ fontSize: 24, marginLeft:"1em" }}/>
+           <Entypo onClick={() => {switchMode(ps => !ps);}} name='light-up' style={{ fontSize: 24, marginLeft:"1em" }}/>
             }
          </Text>
          <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40}}>
@@ -94,7 +93,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#dbd3d8',
     padding:'80 20 0 20',
-    color:'#fff',
   },
 
   leftIcon: {
