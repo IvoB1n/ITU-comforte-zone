@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements'
 import Entypo from 'react-native-vector-icons/Entypo';
 import {  Picker } from "react-native";
 import { useState } from "react";
-import { Button , TouchableOpacity} from 'react-native-elements/dist/buttons/Button';
+import { Button , TouchableOpacity} from 'react-native';
 
 
 export default class App extends React.Component {
@@ -55,7 +55,7 @@ export default class App extends React.Component {
            Language
            <View style={{alignSelf:'flex-end', paddingLeft:20,}}>
             
-           <Picker selectedValue={this.state.selectedValue} style={{ height: 30, width: '7em' }} onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+           <Picker selectedValue={this.state.selectedValue} style={{ height: 30, width: '7em' }} onValueChange={(itemValue, itemIndex) => this.setState({selectedValue: itemValue})}>
               <Picker.Item label="English" value="en" />
               <Picker.Item label="Czech" value="cz" />
               <Picker.Item label="Russian" value="ru" />
@@ -66,10 +66,9 @@ export default class App extends React.Component {
           
          
          
-         <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40,color: "#000" }}>
+         <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40, }}>
          <Entypo  name='user' style={{ fontSize: 24,}}/>
-         <Button style={{ color:"#fff", fontSize: 24}} title="Add some friends"  onPress={() => this.props.navigation.navigate('/pa') } /> 
-         
+         <TouchableOpacity>Personal Information</TouchableOpacity>
          </Text>
          <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40}}>
          <Entypo  name='light-up' style={{ fontSize: 24, }}/>
@@ -82,7 +81,7 @@ export default class App extends React.Component {
          </Text>
          <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40}}>
          <Entypo  name='lock-open' style={{ fontSize: 24, }}/>
-           Privacy
+         <TouchableOpacity>Privacy</TouchableOpacity>
          </Text>
       <StatusBar style="auto" />
     </View>
@@ -93,8 +92,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#dbd3d8',
-    padding:'80 20 0 20',
-    color:'#fff',
+    paddingTop:20,
+    paddingLeft:20,
   },
 
   leftIcon: {
