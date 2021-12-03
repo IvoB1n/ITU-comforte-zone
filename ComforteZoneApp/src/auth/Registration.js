@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native'
 
 export default class Registration extends React.Component {
     state = {
-        password: '', email: ''
+        name: '', password: '', email: '', age: 0, gender: ''
     }
     onChangeText = (key, val) => {
         this.setState({ [key]: val })
