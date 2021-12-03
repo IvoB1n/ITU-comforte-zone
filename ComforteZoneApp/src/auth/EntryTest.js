@@ -1,21 +1,21 @@
 import React from 'react'
 import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native'
 
-export default class Registration extends React.Component {
+export default class EntryTest extends React.Component {
     state = {
-        name: '', password: '', email: '', age: 0, gender: ''
+        q1: '', q2: '', q3: '', q4: '', q5: ''
     }
     onChangeText = (key, val) => {
         this.setState({ [key]: val })
     }
     
-    registration = async () => {
-        const { name, password, email, age, gender} = this.state
+    entry_test = async () => {
+        const { q1, q2, q3, q4, q5} = this.state
         try {
-        // check pass and usrname
-            console.log('user successfully registered!: ', email, password)
-            this.props.navigation.navigate('EntryTest')
-            console.log('Really&!: ', email, password)
+        // check pass and usrq1
+            console.log('user successfully registered!: ', q3, q2)
+            this.props.navigation.navigate('Home')
+            console.log('Really&!: ', q3, q2)
         } catch (err) {
             console.log('error signing up: ', err)
         }
@@ -27,60 +27,59 @@ export default class Registration extends React.Component {
         <View style={{justifyContent: 'center', flex: 1, backgroundColor: '#dbd3d8'}}>
             <View style={styles.container}>
                 <View style={styles.huge_font}>
-                    <Text style={styles.huge_font}>Registration</Text>
+                    <Text style={styles.huge_font}>Entry Psychological Test</Text>
                 </View>
+                <Text style={styles.text_style}>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder='Name'
-                    autoComplete='username'
+                    placeholder='type your answer'
                     autoCapitalize="none"
                     placeholderTextColor='#223843'
-                    onChangeText={val => this.onChangeText('name', val)}
+                    onChangeText={val => this.onChangeText('q1', val)}
                     />
+                <Text style={styles.text_style}>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder='Email'
-                    autoComplete='email'
-                    keyboardType='email-address'
+                    placeholder='type your answer'
                     autoCapitalize="none"
                     placeholderTextColor='#223843'
-                    onChangeText={val => this.onChangeText('email', val)}
+                    onChangeText={val => this.onChangeText('q3', val)}
                     />
+                <Text style={styles.text_style}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder='Password'
-                    autoComplete='password'
+                    placeholder='type your answer'
                     secureTextEntry={true}
                     autoCapitalize="none"
                     placeholderTextColor='#223843'
-                    onChangeText={val => this.onChangeText('password', val)}
+                    onChangeText={val => this.onChangeText('q2', val)}
                     />
+                <Text style={styles.text_style}>Aliquam ornare wisi eu metus.</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder='Age'
-                    keyboardType='numeric'
+                    placeholder='type your answer'
                     autoCapitalize="none"
                     placeholderTextColor='#223843'
-                    onChangeText={val => this.onChangeText('age', val)}
+                    onChangeText={val => this.onChangeText('q4', val)}
                     />
+                <Text style={styles.text_style}>Etiam egestas wisi a erat.</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder='Gender'
-                    autoComplete='gender'
+                    placeholder='type your answer'
                     autoCapitalize="none"
                     placeholderTextColor='#223843'
-                    onChangeText={val => this.onChangeText('gender', val)}
+                    onChangeText={val => this.onChangeText('q5', val)}
                 />
-                <View style={styles.button_container} onPress={this.registration}>
+                <View style={styles.button_container}>
                     <Pressable
-                        onPress={this.registration}
+                        onPress={this.entry_test}
                         style={({ pressed }) => [
                             { backgroundColor: pressed ? '#d8b4a0' : '#d77a61' },
                             styles.button_container,
                             styles.wrapperCustom
                         ]}>
                             <Text style={styles.button}>
-                                Register
+                                Submit
                             </Text>
                     </Pressable>
                 </View>
@@ -91,6 +90,11 @@ export default class Registration extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    text_style: {
+        fontSize: 18,
+        color: '#223843',
+        marginHorizontal: 10,
+    },
     huge_font: {
         marginHorizontal: 10,
         fontSize: 35,
