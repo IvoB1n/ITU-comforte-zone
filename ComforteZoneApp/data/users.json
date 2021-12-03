@@ -1,0 +1,36 @@
+{
+    "users": [
+    {
+        "id": 1,
+        "nickname": "Adam",
+        "avatarLink": "require('../../assets/man_avatar.png')",
+        "level": 7,
+        "maxXP": 500,
+        "userXP": 100
+    },
+    {
+        "id": 2,
+        "nickname": "Caroline",
+        "avatarLink": "require('../../assets/woman_avatar.jpeg')",
+        "level": 10,
+        "maxXP": 1000,
+        "userXP": 650
+    },
+    {
+        "id": 3,
+        "nickname": "Vasilis",
+        "avatarLink": "assets/man_avatar2.jpeg",
+        "level": 3,
+        "maxXP": 100,
+        "userXP": 0
+    },
+    {
+        "id": 4,
+        "nickname": "Alexa",
+        "avatarLink": "assets/blue_avatar.png",
+        "level": 6,
+        "maxXP": 450,
+        "userXP": 50
+    }
+    ]
+}

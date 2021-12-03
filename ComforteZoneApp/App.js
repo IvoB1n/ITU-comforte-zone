@@ -6,6 +6,7 @@ import Registration from './src/auth/Registration'
 import Home from './src/Home'
 import EntryTest from './src/auth/EntryTest';
 import UserPage from './components/tasks/task';
+import HomePage from './components/homepage/homepage';
 
 const Stack = createNativeStackNavigator();
 

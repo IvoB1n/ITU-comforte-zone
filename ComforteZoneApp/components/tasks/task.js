@@ -1,62 +1,24 @@
 import React, { useState } from 'react';
 import { Component } from 'react';
-import { StyleSheet, TouchableHighlight, Image, Text, FlatList, SafeAreaView, View, TouchableOpacity } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {FontAwesome5} from 'react-native-vector-icons';
+import { StyleSheet, TouchableHighlight, Image, Text, FlatList, SafeAreaView, View, TouchableOpacity, Pressable } from 'react-native';
+import {Ionicons} from 'react-native-vector-icons';
+import { tasks } from '../../data/tasks.json';
+import { users } from '../../data/users.json';
+import NavigationMain from '../homepage/navigation';
 
-
-const tasks = [
+const links = [
     {
-        id: 1,
-        title: "Lorem Ipsum",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam eget nisl. "
+        avatar: require('../../assets/man_avatar.png')
     },
     {
-        id: 2,
-        title: "Lorem Ipsum 2",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam eget nisl. In enim a."
+        avatar: require('../../assets/woman_avatar.jpeg')
     },
     {
-        id: 3,
-        title: "Lorem Ipsum 3",
-        description: "Mauris dolor felis, sagittis at, luctus sed, aliquam non, tellus. Donec iaculis gravida nulla. Praesent id justo in neque elementum ultrices. "
-    },
-
-]
-
-const users = [
-    {
-        id: 1,
-        nickname: "Adam",
-        avatarLink: "../assets/man_avatar.png",
-        level: 7,
-        maxXP: 500,
-        userXP: 100,
+        avatar: require('../../assets/man_avatar2.jpeg')
     },
     {
-        id: 2,
-        nickname: "Caroline",
-        avatarLink: require("../assets/woman_avatar.jpeg"),
-        level: 10,
-        maxXP: 1000,
-        userXP: 650,
-    },
-    {
-        id: 3,
-        nickname: "Vasilis",
-        avatarLink: require("../assets/man_avatar2.jpeg"),
-        level: 3,
-        maxXP: 100,
-        userXP: 0
-    },
-    {
-        id: 4,
-        nickname: "Alexa",
-        avatarLink: require("../assets/blue_avatar.png"),
-        level: 6,
-        maxXP: 450,
-        userXP: 50
-    }
+        avatar: require('../../assets/blue_avatar.png')
+    }  
 ]
 
 class FriendBox extends Component {
@@ -74,7 +36,7 @@ class FriendBox extends Component {
                     style={styles.friendAvatarContainer}>
                     <Image 
                         style={styles.friendAvatar}
-                        source={users[this.state.user].avatarLink} />
+                        source={links[this.state.user].avatar} />
                 </TouchableHighlight>
                 <View style={{alignItems: 'center'}}>
                     <Text style={styles.friendInfo}>
@@ -90,7 +52,7 @@ class FriendBox extends Component {
 }
 
 
-class TaskDescription extends Component {
+class UserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -99,6 +61,7 @@ class TaskDescription extends Component {
             friend2: 2,
             friend3: 3,
             taskID: 2,
+            navigation: this.props.navigation,
         }
     }
 
@@ -106,12 +69,15 @@ class TaskDescription extends Component {
         return (
         <SafeAreaView style={styles.container}>
             <View style={styles.middle}>
+                <View style={{alignSelf: 'flex-end', margin: 5}}>
+                    <Ionicons name="settings-outline" size={35} />
+                </View>
                 <View style={{alignItems: 'center'}}>
                     <TouchableHighlight
                         style={styles.avatarContainer}>
                     <Image 
                     style={styles.avatar}
-                    source={require('../assets/man_avatar.png')} />
+                    source={links[this.state.usernumber].avatar} />
                     </TouchableHighlight>
                     <Text style={styles.userInfo}>{users[this.state.usernumber].nickname}</Text>
                     <Text style={styles.userInfo}>Level {users[this.state.usernumber].level}</Text>
@@ -134,11 +100,7 @@ class TaskDescription extends Component {
                     </View>
                 </View>
             </View>
-            <View style={styles.bottom}>
-                <FontAwesome name="home" size={35} color='#eff1f3' style={styles.navIcon} />
-                <FontAwesome5 name="tasks" size={35} color='#eff1f3' style={styles.navIcon} />
-                <FontAwesome name="star" size={35} color='#eff1f3' style={styles.navIcon} />
-            </View>
+            <NavigationMain navigation={this.props.navigation}/>
 
         </SafeAreaView>
         )
@@ -167,9 +129,8 @@ const styles = StyleSheet.create({
     navIcon: {
         alignItems: 'center',
         color: '#eff1f3',
-        paddingVertical: 10,
-        marginHorizontal: 30
-        // paddingHorizontal: 40,
+        paddingVertical: 15,
+        marginHorizontal: 30,
     },
     avatarContainer: {
         margin: 10,
@@ -225,4 +186,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TaskDescription;
+export default UserPage;
