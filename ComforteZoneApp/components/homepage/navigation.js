@@ -9,15 +9,15 @@ class NavigationMain extends Component {
         return (
             <View style={styles.bottom}>
                 <Pressable 
-                onPress={() => this.props.navigation.navigate('HomePage')}
-                >
-                <FontAwesome name="home" size={35} color='#eff1f3' style={styles.navIcon} />
+                    onPress={() => this.props.navigation.navigate('HomePage')}>
+                    <FontAwesome name="home" size={35} color='#eff1f3' style={styles.navIcon} />
+                </Pressable>
+                <Pressable 
+                    onPress={() => this.props.navigation.navigate('TaskList')}>
+                    <FontAwesome5 name="tasks" size={35} color='#eff1f3' style={styles.navIcon} />
                 </Pressable>
                 <Pressable>
-                <FontAwesome5 name="tasks" size={35} color='#eff1f3' style={styles.navIcon} />
-                </Pressable>
-                <Pressable>
-                <FontAwesome name="star" size={35} color='#eff1f3' style={styles.navIcon} />
+                    <FontAwesome name="star" size={35} color='#eff1f3' style={styles.navIcon} />
                 </Pressable>
             </View>
         )
