@@ -9,14 +9,14 @@ import EntryTest from './src/auth/EntryTest';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="EntryTest" component={EntryTest} />
-        <Stack.Screen name="Registration" component={Registration} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+    return (
+        <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="EntryTest" component={EntryTest} />
+            <Stack.Screen name="Registration" component={Registration} />
+        </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
