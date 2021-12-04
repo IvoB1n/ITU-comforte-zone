@@ -30,7 +30,7 @@ export default class Login extends React.Component {
             console.log('intput:', json)
             if (json.token) {
                 console.log('user successfully registered!: ', email, password)
-                this.props.navigation.navigate('Home')
+                this.props.navigation.navigate('HomePage')
             } else {
                 this.login_alert
             }
