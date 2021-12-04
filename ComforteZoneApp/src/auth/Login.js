@@ -11,14 +11,47 @@ export default class Login extends React.Component {
     login = async () => {
         const { password, email, } = this.state
         try {
-        // check pass and usrname
-            console.log('user successfully logged in!: ', email, password)
-            this.props.navigation.navigate('Home')
-            console.log('Really&!: ', email, password)
+            const response = await fetch('https://itu-comforte-zone.herokuapp.com/api/user/login', {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  password: password,
+                  email: email,
+                })
+            });
+            const json = await response.json();
+            console.log('output', JSON.stringify({
+                password: password,
+                email: email,
+            }))
+            console.log('intput:', json)
+            if (json.token) {
+                console.log('user successfully registered!: ', email, password)
+                this.props.navigation.navigate('Home')
+            } else {
+                this.login_alert
+            }
         } catch (err) {
             console.log('error signing up: ', err)
         }
     }
+
+    login_alert = () =>
+    Alert.alert(
+      "Login",
+      "User does not exists or mssing required data",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
 
     google_api_alert = () =>
     Alert.alert(

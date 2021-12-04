@@ -12,14 +12,55 @@ export default class Registration extends React.Component {
     registration = async () => {
         const { name, password, email, age, gender} = this.state
         try {
-        // check pass and usrname
-            console.log('user successfully registered!: ', email, password)
-            this.props.navigation.navigate('EntryTest')
-            console.log('Really&!: ', email, password)
+            const response = await fetch('https://itu-comforte-zone.herokuapp.com/api/user/registration', {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  name: name,
+                  password: password,
+                  email: email,
+                  age: Number(age),
+                  gender: gender,
+                  points: 0,
+                })
+            });
+            const json = await response.json();
+            console.log('output', JSON.stringify({
+                name: name,
+                password: password,
+                email: email,
+                age: Number(age),
+                gender: gender,
+                points: 0,
+            }))
+            console.log('intput:', json)
+            if (json.token) {
+                console.log('user successfully registered!: ', email, password)
+                this.props.navigation.navigate('EntryTest')
+            } else {
+                this.registration_alert
+            }
         } catch (err) {
             console.log('error signing up: ', err)
         }
     }
+
+    registration_alert = () =>
+    Alert.alert(
+      "Registration",
+      "User already exists or mssing required data",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
  
     render() {
         const { navigation } = this.props
