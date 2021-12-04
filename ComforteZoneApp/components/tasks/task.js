@@ -69,7 +69,7 @@ class UserPage extends Component {
         return (
         <SafeAreaView style={styles.container}>
             <View style={styles.middle}>
-                <View style={{alignSelf: 'flex-end', margin: 5}}>
+                <View style={{alignSelf: 'flex-end', marginTop: 35}}>
                     <Ionicons name="settings-outline" size={35} />
                 </View>
                 <View style={{alignItems: 'center'}}>

@@ -14,7 +14,7 @@ export default class EntryTest extends React.Component {
         try {
         // check pass and usrq1
             console.log('user successfully registered!: ', q3, q2)
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('HomePage')
             console.log('Really&!: ', q3, q2)
         } catch (err) {
             console.log('error signing up: ', err)
