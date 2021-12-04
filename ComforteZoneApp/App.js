@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Switch } from 'react-native';
 import { Icon } from 'react-native-elements'
 import Entypo from 'react-native-vector-icons/Entypo';
 import {  Picker } from "react-native";
-import { useState } from "react";
 import { Button , TouchableOpacity} from 'react-native';
 
 
@@ -12,15 +11,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedValue: 'en',
-      isNotificationsWorks: true,
-      mode:true,
+      
+      want_to_change_pass:false,
    };
   }
 
-  buttonPressed(page){
-    this.props.navigator.replace({
-      id: page,
+  onPress = () => {
+    this.setState({
+      want_to_change_pass: !this.state.selectedValue
     })
   }
 
@@ -28,63 +26,43 @@ export default class App extends React.Component {
   return (
     
     <View style={styles.container}>
-      <Text style={{ fontSize: 24, alignSelf: "flex-start" }}> 
-      <Icon name='settings' style={styles.leftIcon}/>
-        Settings
+      <Text style={styles.text}> 
+      <Icon name='lock-open' style={styles.leftIcon}/>
+        Privacy
+        <TouchableOpacity > <Entypo  name='cross' style={{ fontSize: 25, alignSelf:"flex-end", paddingLeft:120,}}/> </TouchableOpacity>
         </Text>
-        <View
-        style={{
-          borderBottomColor: 'black',
-          borderBottomWidth: 1,
-        }}
-        />
-        <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40}}>
-         <Entypo  name='bell' style={{ fontSize: 24,}}/>
-           Notifications
-          <Switch
-            style={{marginLeft: '1em'}}
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={this.state.isNotificationsWorks ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={() => this.setState({ isNotificationsWorks: !this.state.isNotificationsWorks})}
-            value={this.state.isNotificationsWorks}
-          />
+        <View style={{ borderBottomColor: 'black', borderBottomWidth: 1, }}/>
+        
+      <View style={styles.message}>
+        <Text style={{fontSize:20, paddingBottom:25}}>
+          Dear Customer !
         </Text>
-         <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40}}>
-         <Entypo  name='dribbble' style={{ fontSize: 24,}}/>
-           Language
-           <View style={{alignSelf:'flex-end', paddingLeft:20,}}>
-            
-           <Picker selectedValue={this.state.selectedValue} style={{ height: 30, width: '7em' }} onValueChange={(itemValue, itemIndex) => this.setState({selectedValue: itemValue})}>
-              <Picker.Item label="English" value="en" />
-              <Picker.Item label="Czech" value="cz" />
-              <Picker.Item label="Russian" value="ru" />
+        <Text style={{fontSize:20, paddingBottom:25}}>
+        To reset security data, please click the button below and go through email verification.
+        </Text>
+        <TouchableOpacity
+         style={styles.button}
+         onPress={this.onPress}
+        >
+         <Text style={{fontSize: 24}}>Reset</Text>
+        </TouchableOpacity>
+        <View>
+          <Text style={{paddingBottom:60}}>
+            For other question contact us 
+            <TouchableOpacity style={styles.button} 
+            onPress={this.onPress}
+        >
+         <Text style={{fontSize: 24}}>Reset</Text>
+        </TouchableOpacity>
+          </Text>
+        </View>
+      </View>
 
-              </Picker>
-         </View>
-           </Text>
-          
-         
-         
-         <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40, }}>
-         <Entypo  name='user' style={{ fontSize: 24,}}/>
-         <TouchableOpacity>Personal Information</TouchableOpacity>
-         </Text>
-         <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40}}>
-         <Entypo  name='light-up' style={{ fontSize: 24, }}/>
-           Mode 
-           {this.state.mode ? 
-           <Entypo  onClick={() => {this.setState({mode: !this.state.mode})}} name='moon' style={{ fontSize: 24, marginLeft:"1em"}}/>
-           :
-           <Entypo onClick={() => {this.setState({mode: !this.state.mode})}} name='light-up' style={{ fontSize: 24, marginLeft:"1em" }}/>
-            }
-         </Text>
-         <Text style={{ fontSize: 24, alignSelf: "flex-start" , paddingTop: 40}}>
-         <Entypo  name='lock-open' style={{ fontSize: 24, }}/>
-         <TouchableOpacity>Privacy</TouchableOpacity>
-         </Text>
+
+
       <StatusBar style="auto" />
     </View>
+    
   );}
 }
 
@@ -98,5 +76,25 @@ const styles = StyleSheet.create({
 
   leftIcon: {
     marginRight: '1em',
-  }    
+  },
+  
+  text:{
+    fontSize: 24, 
+    alignSelf: "flex-start" , 
+    paddingTop: 40
+  },
+  message: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#D77a61',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    
+  }
+
 });
