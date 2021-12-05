@@ -10,13 +10,17 @@ import HomePage from './components/homepage/homepage';
 import TaskList from './components/tasks/tasklist';
 import Task from './components/tasks/viewtask';
 import Congrats from './components/tasks/grats';
+import MySettings from './pages/Settings';
+import PersonalInfo from './pages/personal_iformation';
+import MyPrivacy from './pages/privacy';
+import MyRecords from './pages/records';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
         <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName="MySettings" screenOptions={{headerShown: false}}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="EntryTest" component={EntryTest} />
@@ -26,6 +30,10 @@ export default function App() {
             <Stack.Screen name="TaskList" component={TaskList} />
             <Stack.Screen name="Task" component={Task} />
             <Stack.Screen name="Congrats" component={Congrats} />
+            <Stack.Screen name="MySettings" component={MySettings} />
+            <Stack.Screen name="PersonalInfo" component={PersonalInfo} />
+            <Stack.Screen name="MyPrivacy" component={MyPrivacy} />
+            <Stack.Screen name="MyRecords" component={MyRecords} />
         </Stack.Navigator>
         </NavigationContainer>
     )
