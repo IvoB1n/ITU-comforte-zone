@@ -5,21 +5,97 @@ import NavigationMain from '../homepage/navigation';
 import { ProgressBar } from 'react-native-paper';
 import { Foundation } from 'react-native-vector-icons';
 import { Ionicons } from 'react-native-vector-icons';
-
+import { MaterialIcons } from 'react-native-vector-icons';
 
 
 class TaskList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: this.props.userID,
-            userExp: 350,
-            maxExp: 500,
+            // user: this.props.userID,
+            user: 7,
+            userExp: 35,
+            maxExp: 100,
             numOfTasks: 5,
+            tasklist: null
         }
     }
 
+    componentDidMount = () => {
+        this.tasklist()
+    }
+
+    tasklist = async () => {
+        if (!this.state.tasklist) {
+            try {
+                const response = await fetch('https://itu-comforte-zone.herokuapp.com/api/task/get_user_tasks', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                    id: this.state.user,
+                    })
+                });
+                const json = await response.json();
+                // console.log(json);
+                if (json) {
+                    this.setState({tasklist: json.task_list})
+                }
+            } catch (err) {
+                console.log('error while downloading tasks', err)
+            }
+        }
+    }
+
+    convertCategory = (task) => {
+        let category;
+        if (task.category === 1) {
+            category = "Myself"
+        } else if (task.category === 2) {
+            category = "Social"
+        } else if (task.category === 3) {
+            category = "Relatives"
+        }
+        return category
+    }
+    
+    chooseIconOnStatus = (status) => {
+        let icon;
+        if (status === 0) {
+            icon = <Foundation name="list" size={40} style={styles.taskIcon} />
+        } else if (status === 1) {
+            icon = <MaterialIcons name="done" size={40} style={styles.taskIcon} />
+        } else if (task.category === 2) {
+            icon = <MaterialIcons name="not-interested" size={40} style={styles.taskIcon} />
+        }
+        return icon
+    }
+
+    renderItem = ({item}) => {
+        console.log("----------------------------\n",item)
+        return (
+            <Pressable style={styles.task} 
+                onPress={() => this.props.navigation.navigate('Task', 
+                {user: this.state.user,
+                task: item})}>
+                {this.chooseIconOnStatus(item.resolved)}
+                <View style={{margin: 5, flex: 0.8}}>
+                    <Text style={styles.taskTitle}>{item.header}</Text>
+                    <Text>Category: {this.convertCategory(item)}</Text>
+                </View>
+                <Text style={{alignSelf:'center', fontWeight: 'bold'}}>+{item.points} XP</Text>
+            </Pressable>
+        )
+    }
+
+    keyExtractor = (item, index) => {
+        return item.id;
+    }
+
     render() {
+        console.log("list", this.state.tasklist)
         return (
             <SafeAreaView style={styles.container} >
                 <View style={styles.middle}>
@@ -42,50 +118,16 @@ class TaskList extends Component {
                             </Text>
                         </View>
                         <View style={{marginVertical: 5}}>
-                            <ScrollView 
+                            {this.state.tasklist ? 
+                            <FlatList
+                                style={{flexGrow: 0.8}}
                                 showsVerticalScrollIndicator={false}
-                                fadingEdgeLength={100}
-                                style={{flexGrow: 0.8}}>
-                            <Pressable style={styles.task}>
-                                <Foundation name="list" size={40} style={styles.taskIcon} />
-                                <View style={{margin: 5}}>
-                                    <Text style={styles.taskTitle}>Task Title</Text>
-                                    <Text>Category: Society</Text>
-                                </View>
-
-                            </Pressable>
-                            <Pressable style={styles.task}>
-
-                            </Pressable>
-                            <Pressable style={[styles.task, {backgroundColor: "#d77a61"}]}>
-                                <Ionicons name="checkmark-done-sharp" size={40} style={styles.taskIcon} />
-                                <View style={{margin: 5}}>
-                                    <Text style={styles.taskTitle}>Task Title</Text>
-                                    <Text>Category: Relatives</Text>
-                                </View>
-                            </Pressable>
-                            <Pressable style={[styles.task, {backgroundColor: "#d77a61"}]}>
-                                <Ionicons name="checkmark-done-sharp" size={40} style={styles.taskIcon} />
-                                <View style={{margin: 5}}>
-                                    <Text style={styles.taskTitle}>Task Title</Text>
-                                    <Text>Category: Relatives</Text>
-                                </View>
-                            </Pressable>
-                            <Pressable style={styles.task}></Pressable>
-                             <Pressable style={[styles.task, {backgroundColor: "#d77a61"}]}>
-                                <Ionicons name="checkmark-done-sharp" size={40} style={styles.taskIcon} />
-                                <View style={{margin: 5}}>
-                                    <Text style={styles.taskTitle}>Task Title</Text>
-                                    <Text>Category: Relatives</Text>
-                                </View>
-                            </Pressable>
-                            <Pressable style={styles.task}></Pressable>
-                            <Pressable style={styles.task}></Pressable>
-                            <Pressable style={styles.task}></Pressable>
-                            <Pressable style={styles.task}></Pressable>
-                            <Pressable style={styles.task}></Pressable>
-                            <Pressable style={styles.task}></Pressable>
-                            </ScrollView>
+                                fadingEdgeLength={200}
+                                data={this.state.tasklist}
+                                keyExtractor={this.keyExtractor}
+                                renderItem={this.renderItem}
+                            />                                
+                            : <Text></Text> }
                         </View>
                     </View>
                 </View>
@@ -156,6 +198,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     taskIcon: {
+        flex: 0.15,
         margin: 10
     }
 });

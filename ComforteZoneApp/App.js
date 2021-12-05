@@ -5,16 +5,17 @@ import Login from './src/auth/Login'
 import Registration from './src/auth/Registration'
 import Home from './src/Home'
 import EntryTest from './src/auth/EntryTest';
-import UserPage from './components/tasks/task';
+import UserPage from './components/tasks/user';
 import HomePage from './components/homepage/homepage';
 import TaskList from './components/tasks/tasklist';
+import Task from './components/tasks/viewtask';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
         <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName="HomePage" screenOptions={{headerShown: false}}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="EntryTest" component={EntryTest} />
@@ -22,6 +23,7 @@ export default function App() {
             <Stack.Screen name="HomePage" component={HomePage} options={{ title: 'Welcome' }}/>
             <Stack.Screen name="UserPage" component={UserPage} />
             <Stack.Screen name="TaskList" component={TaskList} />
+            <Stack.Screen name="Task" component={Task} />
         </Stack.Navigator>
         </NavigationContainer>
     )
