@@ -5,6 +5,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {  Picker } from "react-native";
 import { Button , TouchableOpacity} from 'react-native';
 import MyDatePicker from './datepicker';
+//import Zeme from './countries';
 
 export default class PersonalInfo extends React.Component {
   constructor(props) {
@@ -73,7 +74,6 @@ export default class PersonalInfo extends React.Component {
                 <Picker.Item label='Japan'  value="Japan" />
 
           </Picker>
-
           </View>
           <Text style={styles.text}>
            Gender: 
@@ -94,7 +94,12 @@ export default class PersonalInfo extends React.Component {
 
       </View>
 
-        
+      <View style={{paddingTop:20}}>
+            <TouchableOpacity style={styles.button}  onClick={() => {this.setState({reset: !this.state.reset})}}>
+              <Text style={{fontSize:15}}>Reset</Text>
+            </TouchableOpacity>
+
+      </View>
         
       <StatusBar style="auto" />
       </View>
@@ -117,6 +122,16 @@ const styles = StyleSheet.create({
   icon:{
     fontSize: 24,
     paddingTop:5
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#d8b4a0',
+    height:40,
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    width:'80%',
+
   },
 
 
