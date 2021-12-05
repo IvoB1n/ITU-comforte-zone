@@ -96,7 +96,7 @@ class TaskList extends Component {
                 {userId: this.state.user,
                 task: item})}>
                 {this.chooseIconOnStatus(item.resolved)}
-                <View style={{margin: 5, flex: 0.8}}>
+                <View style={{marginHorizontal: 5, flex: 0.8}}>
                     <Text style={styles.taskTitle}>{item.header}</Text>
                     <Text>Category: {this.convertCategory(item)}</Text>
                 </View>

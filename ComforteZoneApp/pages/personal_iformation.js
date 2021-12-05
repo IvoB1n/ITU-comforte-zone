@@ -32,9 +32,9 @@ export default class PersonalInfo extends React.Component {
         <Text style={styles.text}> 
         
           Personal Information</Text>
-          <TouchableOpacity > 
+          {/* <TouchableOpacity > 
           <Entypo  name='cross' style={{ fontSize: 25, alignSelf:"flex-end", paddingLeft:20,paddingTop:5}}/>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
       </View>
       
       <View style={{ borderBottomColor: 'black', borderBottomWidth: 1, }} />
@@ -85,7 +85,7 @@ export default class PersonalInfo extends React.Component {
 
           <View style={{paddingBottom:15,}}>
           <Picker Gender={this.state.Gender} style={{ height: 40, width: '40%',  fontSize:24 }} onValueChange={(itemValue,itemIndex) => this.setState({Gender: itemValue})}>
-              <Picker.Item label='Mail'  value="Mail" />
+              <Picker.Item label='Male'  value="Male" />
               <Picker.Item label='Female'  value="Femail" />
           </Picker>
           </View>

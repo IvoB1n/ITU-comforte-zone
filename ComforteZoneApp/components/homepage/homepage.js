@@ -44,11 +44,11 @@ class HomePage extends Component {
                     <View style={styles.box}>
                         <Pressable
                             style={styles.avatarContainer}
-                            onPress={() => this.props.navigation.navigate('MyRecords')}
+                            onPress={() => this.props.navigation.navigate('Leaderboard')}
                             >   
                             <FontAwesome5 style={styles.friends} size={70} name='user-friends' color='#223843' />
                         </Pressable>
-                        <Text style={styles.text}>Friends</Text>
+                        <Text style={styles.text}>Re</Text>
                     </View>
                 
                 </View>

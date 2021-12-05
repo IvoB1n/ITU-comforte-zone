@@ -41,9 +41,9 @@ export default class MySettings extends React.Component {
       <Text style={styles.text}> 
       
         Settings</Text>
-        <TouchableOpacity > 
+        {/* <TouchableOpacity > 
         <Entypo  name='cross' style={{ fontSize: 25, alignSelf:"flex-end", paddingLeft:'60%',paddingTop:10}}/>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={{ borderBottomColor: 'black',borderBottomWidth: 1, }} />
       <View style={styles.positions}>

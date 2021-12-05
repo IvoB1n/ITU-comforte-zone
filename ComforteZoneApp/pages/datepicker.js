@@ -16,8 +16,8 @@ export default class MyDatePicker extends Component {
         mode="date"
         placeholder="select date"
         format="YYYY-MM-DD"
-        minDate="2016-05-01"
-        maxDate="2016-06-01"
+        minDate="1940-05-01"
+        maxDate="2021-12-31"
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         customStyles={{

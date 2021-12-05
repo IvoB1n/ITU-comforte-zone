@@ -53,6 +53,20 @@ export default class Login extends React.Component {
         { text: "OK", onPress: () => console.log("OK Pressed") }
       ]
     );
+    
+    forget_password_alert = () =>
+    Alert.alert(
+      "Forget password",
+      "We've srnd you an email, check your mailbox",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
 
     google_api_alert = () =>
     Alert.alert(
@@ -74,7 +88,7 @@ export default class Login extends React.Component {
         <View style={{justifyContent: 'center', flex: 1, backgroundColor: '#dbd3d8'}}>
             <View style={styles.container}>
                 <View style={styles.huge_font}>
-                    <Text style={styles.huge_font}>Sing In</Text>
+                    <Text style={styles.huge_font}>Break yourself</Text>
                 </View>
                 <TextInput
                     style={styles.input}
@@ -116,7 +130,7 @@ export default class Login extends React.Component {
                     </Pressable>
                 </View>
                 <View style={styles.row_button_container} onPress={this.login}>
-                <Pressable onPress={this.login} style= {styles.row_button_container}>
+                <Pressable onPress={this.forget_password_alert} style= {styles.row_button_container}>
                         <Text style={styles.row_button}>
                             Forgot password?
                         </Text>

@@ -33,9 +33,9 @@ export default class MyPrivacy extends React.Component {
       <Text style={styles.text}> 
       
         Privacy</Text>
-        <TouchableOpacity > 
+        {/* <TouchableOpacity > 
         <Entypo  name='cross' style={{ fontSize: 25, alignSelf:"flex-end", paddingLeft:'60%',paddingTop:10}}/>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={{ borderBottomColor: 'black',borderBottomWidth: 1, }} />
       
