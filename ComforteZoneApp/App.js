@@ -9,6 +9,7 @@ import UserPage from './components/tasks/user';
 import HomePage from './components/homepage/homepage';
 import TaskList from './components/tasks/tasklist';
 import Task from './components/tasks/viewtask';
+import Congrats from './components/tasks/grats';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ export default function App() {
             <Stack.Screen name="UserPage" component={UserPage} />
             <Stack.Screen name="TaskList" component={TaskList} />
             <Stack.Screen name="Task" component={Task} />
+            <Stack.Screen name="Congrats" component={Congrats} />
         </Stack.Navigator>
         </NavigationContainer>
     )

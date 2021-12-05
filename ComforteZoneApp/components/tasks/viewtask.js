@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, FlatList, SafeAreaView, ScrollView, View, Pressable, Image, Alert } from 'react-native';
 import { MaterialIcons } from 'react-native-vector-icons';
+import ConfettiCannon from 'react-native-confetti-cannon';
 
 
 
@@ -11,6 +12,8 @@ class Task extends Component {
         this.state = {
             userId: this.props.route.params.userId,
             taskId: this.props.route.params.task.id,
+            exp: this.props.route.params.task.points,
+            // animate: false,
         }
     }
 
@@ -54,7 +57,17 @@ class Task extends Component {
         }
     }
 
+//     performTimeConsumingTask = async() => {
+//     return new Promise((resolve) =>
+//       setTimeout(
+//         () => { resolve('result') },
+//         5000
+//       )
+//     );
+//   }
+
     onMarkAsDone = async () => {
+        // this.setState({ animate: true })
         console.log("USERID", this.state.userId)
         try {
             const response = await fetch('https://itu-comforte-zone.herokuapp.com/api/task/update_user_task', {
@@ -73,11 +86,11 @@ class Task extends Component {
                 console.log("DONE", json)
             if (json) {
                 console.log(json)
-                this.props.navigation.navigate('TaskList', 
+                
+                // const data = await this.performTimeConsumingTask()
+                this.props.navigation.navigate('Congrats', 
                 {
-                    userId: this.state.userId,
-                    taskId: this.state.taskId,
-                    resolved: 1
+                    exp: this.state.exp
                 })
             }
         } catch (err) {
@@ -102,6 +115,7 @@ class Task extends Component {
         } 
         return (
             <SafeAreaView style={styles.container} >
+                
                 <View style= {styles.main}>
                     <Text style={styles.taskTitle}>{task.header}</Text>
                     <Text style={styles.taskCategory}>Category: {category}</Text>
@@ -116,7 +130,10 @@ class Task extends Component {
                     <Pressable style={styles.pressable} onPress={this.onMarkAsDone}>
                         <MaterialIcons name="done" size={30}/>
                         <Text style={styles.button}>Mark as Done</Text>
+                        
                     </Pressable>
+                    
+                       
                 </View>
             </SafeAreaView>
         )
