@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, FlatList, SafeAreaView, ScrollView, View, Pressable, Image } from 'react-native';
+import { StyleSheet, Text, FlatList, SafeAreaView, ScrollView, View, Pressable, Image, Alert } from 'react-native';
 import { MaterialIcons } from 'react-native-vector-icons';
 
 
@@ -9,15 +9,84 @@ class Task extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: this.props.userID,
-            userExp: 35,
-            maxExp: 100,
-            numOfTasks: 5,
+            userId: this.props.route.params.userId,
+            taskId: this.props.route.params.task.id,
+        }
+    }
+
+    onDecline = async () => {
+        try {
+            const response = await fetch('https://itu-comforte-zone.herokuapp.com/api/task/update_user_task', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: this.state.userId,
+                    taskId: this.state.taskId,
+                    resolved: 2,
+                })
+            });
+            const json = await response.json();
+                console.log("DECLINE", json)
+            if (json) {
+                console.log(json)
+                Alert.alert(
+                "Task was declined",
+                "Would you like our psychologist connect with you?",
+                [
+                    {
+                    text: "No",
+                    onPress: () => this.props.navigation.navigate('TaskList', 
+                                        {taskId: this.state.taskId, resolved: 2}),
+                    },
+                    { text: "Yes",
+                    onPress: () => this.props.navigation.navigate('TaskList', 
+                                        {taskId: this.state.taskId, resolved: 2}) }
+                ]
+                );
+
+                
+            }
+        } catch (err) {
+            console.log('error while declining', err)
+        }
+    }
+
+    onMarkAsDone = async () => {
+        console.log("USERID", this.state.userId)
+        try {
+            const response = await fetch('https://itu-comforte-zone.herokuapp.com/api/task/update_user_task', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: this.state.userId,
+                    taskId: this.state.taskId,
+                    resolved: 1,
+                })
+            });
+            const json = await response.json();
+                console.log("DONE", json)
+            if (json) {
+                console.log(json)
+                this.props.navigation.navigate('TaskList', 
+                {
+                    userId: this.state.userId,
+                    taskId: this.state.taskId,
+                    resolved: 1
+                })
+            }
+        } catch (err) {
+            console.log('error while declining', err)
         }
     }
 
     render() {
-        const { user, task} = this.props.route.params;
+        const { userId, task} = this.props.route.params;
 
         let category;
         let img;
@@ -40,11 +109,11 @@ class Task extends Component {
                     <Text style={styles.taskDescription}>{task.description}</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <Pressable style={styles.pressable}>
+                    <Pressable style={styles.pressable} onPress={this.onDecline}>
                         <MaterialIcons name="not-interested" size={30}/>
                         <Text style={styles.button}>Decline</Text>
                     </Pressable>
-                    <Pressable style={styles.pressable}>
+                    <Pressable style={styles.pressable} onPress={this.onMarkAsDone}>
                         <MaterialIcons name="done" size={30}/>
                         <Text style={styles.button}>Mark as Done</Text>
                     </Pressable>

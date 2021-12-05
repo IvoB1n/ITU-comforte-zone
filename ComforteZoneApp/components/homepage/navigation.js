@@ -14,7 +14,7 @@ class NavigationMain extends Component {
                 <FontAwesome name="home" size={35} color='#eff1f3' style={styles.navIcon} />
                 </Pressable>
                 <Pressable
-                    onPress={() => this.props.navigation.navigate('TaskList')}>
+                    onPress={() => this.props.navigation.navigate('TaskList', {taskId: null, resolved: 4})}>
                 <FontAwesome5 name="tasks" size={35} color='#eff1f3' style={styles.navIcon} />
                 </Pressable>
                 <Pressable>

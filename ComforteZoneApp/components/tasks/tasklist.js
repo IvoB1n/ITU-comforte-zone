@@ -1,32 +1,45 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, FlatList, SafeAreaView, ScrollView, View, Pressable } from 'react-native';
+import { StyleSheet, Text, FlatList, SafeAreaView, ScrollView, View, Pressable, ActivityIndicator } from 'react-native';
 import NavigationMain from '../homepage/navigation';
 import { ProgressBar } from 'react-native-paper';
 import { Foundation } from 'react-native-vector-icons';
 import { Ionicons } from 'react-native-vector-icons';
 import { MaterialIcons } from 'react-native-vector-icons';
+import { createPortal } from 'react-dom';
 
 
 class TaskList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // user: this.props.userID,
             user: 7,
             userExp: 35,
             maxExp: 100,
             numOfTasks: 5,
-            tasklist: null
+            tasklist: null,
+            resolved: this.props.route.params.resolved,
         }
     }
 
     componentDidMount = () => {
+        console.log("MOUNT", this.state.resolved, this.props.route.params.resolved)
         this.tasklist()
+    }
+ 
+    componentDidUpdate = (prevProps) => {
+        console.log("UPDATE", prevProps.route.params.resolved, this.props.route.params.resolved, prevProps.route.params.taskId,this.props.route.params.taskId)
+        if((prevProps.route.params.resolved !== this.props.route.params.resolved) || this.props.route.params.taskId) {
+            this.tasklist()
+            console.log('RESOLVED', this.state.resolved)
+        }
+        
     }
 
     tasklist = async () => {
-        if (!this.state.tasklist) {
+        if (this.state.resolved > 0) {
+            console.log('TASKLIST')
             try {
                 const response = await fetch('https://itu-comforte-zone.herokuapp.com/api/task/get_user_tasks', {
                     method: 'POST',
@@ -42,6 +55,8 @@ class TaskList extends Component {
                 // console.log(json);
                 if (json) {
                     this.setState({tasklist: json.task_list})
+                    this.setState({resolved: 0})
+                    console.log("LIST", this.state.tasklist)
                 }
             } catch (err) {
                 console.log('error while downloading tasks', err)
@@ -67,18 +82,17 @@ class TaskList extends Component {
             icon = <Foundation name="list" size={40} style={styles.taskIcon} />
         } else if (status === 1) {
             icon = <MaterialIcons name="done" size={40} style={styles.taskIcon} />
-        } else if (task.category === 2) {
+        } else if (status === 2) {
             icon = <MaterialIcons name="not-interested" size={40} style={styles.taskIcon} />
         }
         return icon
     }
 
     renderItem = ({item}) => {
-        console.log("----------------------------\n",item)
         return (
             <Pressable style={styles.task} 
                 onPress={() => this.props.navigation.navigate('Task', 
-                {user: this.state.user,
+                {userId: this.state.user,
                 task: item})}>
                 {this.chooseIconOnStatus(item.resolved)}
                 <View style={{margin: 5, flex: 0.8}}>
@@ -95,7 +109,6 @@ class TaskList extends Component {
     }
 
     render() {
-        console.log("list", this.state.tasklist)
         return (
             <SafeAreaView style={styles.container} >
                 <View style={styles.middle}>
@@ -124,10 +137,10 @@ class TaskList extends Component {
                                 showsVerticalScrollIndicator={false}
                                 fadingEdgeLength={200}
                                 data={this.state.tasklist}
-                                keyExtractor={this.keyExtractor}
+                                // keyExtractor={this.keyExtractor}
                                 renderItem={this.renderItem}
                             />                                
-                            : <Text></Text> }
+                            : <ActivityIndicator size="large" color="#d77a61" style={{marginTop: 50}} />  }
                         </View>
                     </View>
                 </View>
