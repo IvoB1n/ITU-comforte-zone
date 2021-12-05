@@ -1,3 +1,4 @@
+// created by Bobrov Ivan (xbobro01), Carasec Elena (xcaras00)
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

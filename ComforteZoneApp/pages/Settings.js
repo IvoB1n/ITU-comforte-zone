@@ -1,3 +1,4 @@
+// created by Senichak Yahor (xsenic00)
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Switch } from 'react-native';

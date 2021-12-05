@@ -1,3 +1,4 @@
+// created by Carasec Elena (xcaras00)
 import React from 'react';
 import { Component } from 'react';
 import { View, StyleSheet, Pressable, Image, Text} from 'react-native';

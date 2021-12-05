@@ -1,3 +1,4 @@
+// created by Carasec Elena (xcaras00)
 import React, { useState } from 'react';
 import { Component } from 'react';
 import { StyleSheet, TouchableHighlight, Image, Text, FlatList, SafeAreaView, View, TouchableOpacity, Pressable } from 'react-native';

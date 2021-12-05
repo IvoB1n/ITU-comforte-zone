@@ -1,3 +1,4 @@
+// created by Bobrov Ivan (xbobro01)
 import React from 'react'
 import NavigationMain from '../components/homepage/navigation'
 import { View, Text, FlatList, StyleSheet, Pressable, ActivityIndicator } from 'react-native'

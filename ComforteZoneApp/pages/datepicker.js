@@ -1,3 +1,4 @@
+// created by Senichak Yahor (xsenic00)
 import React, { Component } from 'react'
 import DatePicker from 'react-native-datepicker'
 

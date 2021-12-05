@@ -1,3 +1,4 @@
+// created by Carasec Elena (xcaras00)
 import React, { useState } from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, FlatList, SafeAreaView, ScrollView, View, Pressable, Image, Alert } from 'react-native';

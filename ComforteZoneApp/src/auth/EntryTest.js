@@ -1,3 +1,4 @@
+// created by Bobrov Ivan (xbobro01)
 import React from 'react'
 import Slider from "react-native-slider";
 import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native'

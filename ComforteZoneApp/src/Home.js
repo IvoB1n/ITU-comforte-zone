@@ -1,3 +1,4 @@
+// created by Bobrov Ivan (xbobro01)
 import React from 'react'
 import { View, Text} from 'react-native'
 
