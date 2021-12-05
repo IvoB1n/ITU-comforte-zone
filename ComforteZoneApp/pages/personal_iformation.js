@@ -14,6 +14,9 @@ export default class PersonalInfo extends React.Component {
       Gender: 'Female',
       day: '12',
       month:'03',
+      Name:'Yahor',
+      Surname:'Senichak',
+      reset:false
 
    };
   }
@@ -39,7 +42,7 @@ export default class PersonalInfo extends React.Component {
             First Name: 
           </Text>
           <View style={{paddingBottom:15,}}>
-          <TextInput style={styles.input} >
+          <TextInput style={styles.input} Name = {this.state.Name} onValueChange={text =>this.setState({Name: text})} >
 
           </TextInput>
         </View>
@@ -52,7 +55,7 @@ export default class PersonalInfo extends React.Component {
             Last Name: 
           </Text>
           <View style={{paddingBottom:15,}}>
-          <TextInput style={styles.input} >
+          <TextInput style={styles.input} Surname = {this.state.Surname} onValueChange={text =>this.setState({Surname: text})}>
 
           </TextInput>
           </View>
@@ -90,10 +93,16 @@ export default class PersonalInfo extends React.Component {
            Date of birth: 
           </Text>
           <MyDatePicker/>
-
+         
+          
 
       </View>
+      <View style={{paddingTop:20}}>
+            <TouchableOpacity style={styles.button}  onClick={() => {this.setState({reset: !this.state.reset})}}>
+              <Text style={{fontSize:15}}>Reset</Text>
+            </TouchableOpacity>
 
+          </View>
         
         
       <StatusBar style="auto" />
@@ -108,6 +117,16 @@ const styles = StyleSheet.create({
     paddingTop:20,
     paddingLeft:20,
     paddingBottom:10,
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#d8b4a0',
+    height:40,
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    width:'80%',
+
   },
   positions:{
     flexDirection: "row",

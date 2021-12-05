@@ -14,13 +14,14 @@ import MySettings from './pages/Settings';
 import PersonalInfo from './pages/personal_iformation';
 import MyPrivacy from './pages/privacy';
 import MyRecords from './pages/records';
+import Achievement from './src/Achievments';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
         <NavigationContainer>
-        <Stack.Navigator initialRouteName="MySettings" screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="EntryTest" component={EntryTest} />
@@ -34,6 +35,7 @@ export default function App() {
             <Stack.Screen name="PersonalInfo" component={PersonalInfo} />
             <Stack.Screen name="MyPrivacy" component={MyPrivacy} />
             <Stack.Screen name="MyRecords" component={MyRecords} />
+            <Stack.Screen name="Achievement" component={Achievement} />
         </Stack.Navigator>
         </NavigationContainer>
     )

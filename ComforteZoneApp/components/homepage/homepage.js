@@ -31,16 +31,20 @@ class HomePage extends Component {
                     </View>
                     <View style={styles.box}>
                         <Pressable
-                            style={styles.avatarContainer}>    
+                            style={styles.avatarContainer}
+                            onPress={() => this.props.navigation.navigate('Achievement')}
+                            >
                             <Image 
                             style={styles.achievement}
                             source={require('../../assets/trophy.png')} />
                         </Pressable>
-                        <Text style={styles.text}>Level: </Text>
+                        <Text style={styles.text}>Level: 7</Text>
                     </View>
                     <View style={styles.box}>
                         <Pressable
-                            style={styles.avatarContainer}>   
+                            style={styles.avatarContainer}
+                            onPress={() => this.props.navigation.navigate('MyRecords')}
+                            >   
                             <FontAwesome5 style={styles.friends} size={70} name='user-friends' color='#223843' />
                         </Pressable>
                         <Text style={styles.text}>Friends</Text>

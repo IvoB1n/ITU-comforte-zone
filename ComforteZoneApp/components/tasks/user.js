@@ -70,7 +70,11 @@ class UserPage extends Component {
         <SafeAreaView style={styles.container}>
             <View style={styles.middle}>
                 <View style={{alignSelf: 'flex-end', marginTop: 35}}>
-                    <Ionicons name="settings-outline" size={35} />
+                    <Pressable
+                        onPress={() => this.props.navigation.navigate('MySettings')}
+                    > 
+                        <Ionicons name="settings-outline" size={35} />
+                    </Pressable> 
                 </View>
                 <View style={{alignItems: 'center'}}>
                     <TouchableHighlight

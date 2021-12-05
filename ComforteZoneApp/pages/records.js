@@ -29,9 +29,9 @@ export default class MyRecords extends React.Component {
       <Text style={styles.text}> 
       
         Records</Text>
-        <TouchableOpacity > 
+        {/* <TouchableOpacity > 
         <Entypo  name='cross' style={{ fontSize: 25, alignSelf:"flex-end", paddingLeft:'60%',paddingTop:5}}/>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={{ borderBottomColor: 'black', }} />
       
@@ -41,20 +41,20 @@ export default class MyRecords extends React.Component {
 
       <View style={styles.usersPosition}>
 
-        <View style={{alignItems:'center', flexDirection:"row", paddingLeft:40}}>
+        <View style={{alignItems:'center', flexDirection:"row", paddingLeft:50}}>
           <View style={{paddingRight:30}}>
             <TouchableOpacity>
-              <Image style={{height:50,width:50, alignSelf:"flex-start",paddingLeft:30}}  source={require("../images/user.png")}/>
+              <Image style={{height:50,width:50, alignSelf:"flex-start",paddingHorizontal:15}}  source={require("../images/user.png")}/>
             </TouchableOpacity>
           </View>
           <View style={{paddingRight:30}}>
             <TouchableOpacity>
-              <Image style={{height:50,width:50, alignSelf:"flex-start",paddingLeft:30}}  source={require("../images/user.png")}/>
+              <Image style={{height:50,width:50, alignSelf:"flex-start",paddingHorizontal:15}}  source={require("../images/user.png")}/>
             </TouchableOpacity>
           </View>
           <View style={{paddingRight:30}}>
             <TouchableOpacity>
-              <Image style={{height:50,width:50, alignSelf:"flex-start",paddingLeft:30}}  source={require("../images/user.png")}/>
+              <Image style={{height:50,width:50, alignSelf:"flex-start",paddingHorizontal:15}}  source={require("../images/user.png")}/>
             </TouchableOpacity>
           </View>
         </View>
@@ -64,16 +64,16 @@ export default class MyRecords extends React.Component {
 
         <View style={{alignItems:'center', flexDirection:"row", paddingLeft:40}}>
             <View style={{paddingRight:30, width:'33%'}}>
-              <Text style={{fontSize:12, fontWeight:'bold'}}> Yahor Senichak</Text>
-              <Text style={{fontSize:12, }}> Level:80</Text>
+              <Text style={{fontSize:12, fontWeight:'bold'}}>   You</Text>
+              <Text style={{fontSize:12, }}> Level:7</Text>
             </View>
           <View style={{paddingRight:30, width:'33%'}}>
-            <Text style={{fontSize:12, fontWeight:'bold'}}> Lena Carasec</Text>
-            <Text style={{fontSize:12, }}> Level:81</Text>
+            <Text style={{fontSize:12, fontWeight:'bold'}}> Caroline</Text>
+            <Text style={{fontSize:12, }}> Level:10</Text>
           </View>
           <View style={{paddingRight:30, width:'33%'}}>
-            <Text style={{fontSize:12, fontWeight:'bold'}}> Vanya Bobrov</Text>
-            <Text style={{fontSize:12, }}> Level:70</Text>
+            <Text style={{fontSize:12, fontWeight:'bold'}}>  Alexa</Text>
+            <Text style={{fontSize:12, }}> Level:6</Text>
           </View>
         </View>
       </View>
@@ -84,10 +84,10 @@ export default class MyRecords extends React.Component {
           <Image style={{height:20,width:20, alignSelf:"flex-start",paddingLeft:0}}  source={require("../images/user.png")}/>
         </View>
         <View style={{paddingLeft:10}}>
-          <Text style={{fontSize:12, fontWeight:'bold'}}>Gomer Simpson</Text>
+          <Text style={{fontSize:12, fontWeight:'bold'}}>Homer Simpson</Text>
         </View>
         <View style={{alignSelf:'flex-end', paddingLeft:40}}>
-          <Text style={{fontSize:12, fontWeight:'bold', color:"#d77a61"}}> Score: 39874</Text>
+          <Text style={{fontSize:12, fontWeight:'bold', color:"#d77a61"}}>   Score: 532</Text>
         </View>
       </TouchableOpacity>
 
@@ -101,7 +101,7 @@ export default class MyRecords extends React.Component {
           <Text style={{fontSize:12, fontWeight:'bold'}}>Donald Trump</Text>
         </View>
         <View style={{alignSelf:'flex-end', paddingLeft:50}}>
-          <Text style={{fontSize:12, fontWeight:'bold', color:"#d77a61"}}> Score: 35090</Text>
+          <Text style={{fontSize:12, fontWeight:'bold', color:"#d77a61"}}>   Score: 530</Text>
         </View>
       </TouchableOpacity>
 
@@ -115,21 +115,21 @@ export default class MyRecords extends React.Component {
           <Text style={{fontSize:12, fontWeight:'bold'}}>Nikolaj Baskov</Text>
         </View>
         <View style={{alignSelf:'flex-end', paddingLeft:50}}>
-          <Text style={{fontSize:12, fontWeight:'bold', color:"#d77a61"}}> Score: 30090</Text>
+          <Text style={{fontSize:12, fontWeight:'bold', color:"#d77a61"}}>  Score: 498</Text>
         </View>
       </TouchableOpacity>
 
       <View style={{paddingTop:10}}></View>
       <TouchableOpacity style={styles.button} onPress={this.onPress}>
-        <Text>76</Text>
+        <Text>7</Text>
         <View style={{paddingLeft:10}}>
           <Image style={{height:20,width:20, alignSelf:"flex-start",paddingLeft:0}}  source={require("../images/user.png")}/>
         </View>
         <View style={{paddingLeft:10}}>
-          <Text style={{fontSize:12, fontWeight:'bold'}}>Your Profile</Text>
+          <Text style={{fontSize:12, fontWeight:'bold'}}>Adam Lambert</Text>
         </View>
         <View style={{alignSelf:'flex-end', paddingLeft:60}}>
-          <Text style={{fontSize:12, fontWeight:'bold', color:"#d77a61"}}> Score: 790</Text>
+          <Text style={{fontSize:12, fontWeight:'bold', color:"#d77a61"}}>Score: 42</Text>
         </View>
       </TouchableOpacity>
 
